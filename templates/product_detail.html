@@ -1,0 +1,85 @@
+{% block content %}
+  <style>
+    .product-detail-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 20px;
+    }
+
+    .product-detail-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+      width: 600px;
+      background-color: #fff;
+    }
+
+    .product-detail-card img {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .product-detail-card h1 {
+      font-size: 2.2em;
+      margin: 10px 0;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .product-detail-card p.description {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .product-detail-card p.price {
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #007BFF;
+      margin-bottom: 20px;
+    }
+
+    .product-detail-card button {
+      padding: 15px 25px;
+      background-color: #FF9900;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .product-detail-card button:hover {
+      background-color: #e68a00;
+    }
+  </style>
+
+  <h1 style="text-align: center; font-family: 'Arial', sans-serif; color: #333;">Product Detail</h1>
+  <div class="product-detail-container">
+    <div class="product-detail-card">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      <h1>{{ product.name }}</h1>
+      <p class="description">{{ product.description }}</p>
+      <p class="price">${{ product.price }}</p>
+<form method="post" action="{% url 'add_to_cart' product.pk %}">
+              {% csrf_token %}
+              <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                  Add to Cart
+              </button>
+          </form>
+              </div>
+  </div>
+{% endblock %}
